@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin: 10px 0;
+    padding: 12px;
+    width: 300px;
+}
+
+button {
+    padding: 12px;
+    background-color: #fe2c55;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+p {
+    margin-top: 20px;
+}
