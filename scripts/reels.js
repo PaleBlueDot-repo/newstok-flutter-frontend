@@ -28,6 +28,12 @@ function fetchReelsFeed(email) {
     });
 }
 
+
+
+// Create a global Audio object
+// Create a global Audio object
+window.beeb = new Audio();
+
 function displayReels(reels) {
     const reelsContainer = document.getElementById('reels-container');
     reelsContainer.innerHTML = '';
@@ -36,39 +42,70 @@ function displayReels(reels) {
         const reelDiv = document.createElement('div');
         reelDiv.classList.add('reel');
         reelDiv.style.backgroundImage = `url('data:image/png;base64,${reel.reels.image}')`;
+        const audioSrc = `data:audio/mp3;base64,${reel.reels.music}`;
 
-        const reelButtons = `
-            <div class="reel-buttons">
-                <button class="like" onclick="likeReel(${reel.reels.reelsId})">❤️</button>
-                <button class="stop-audio" onclick="stopAudio()">🔇</button>
-                <button class="share" onclick="shareReel()">🔗</button>
-            </div>
-        `;
 
         reelDiv.innerHTML = `
-            ${reelButtons}
-            <div>
-                <h3>${reel.reels.title}</h3>
-                <p>${reel.reels.summary}</p>
+
+         <div class="reel-upper">
+             <h3>${reel.reels.title}</h3>
+        </div>
+
+         <div class="reel-content">
+         <h3>${reel.reels.summary}</h3>
+    </div>
+
+
+          <div class="reel-buttons">
+                <button class="stop-audio" onclick="toggleAudio('${audioSrc}', this)">🔇</button>
+                <button class="like" onclick="likeReel(${reel.reels.reelsId})">❤️ </button>
+                <label class="count">100 </label>
+            </div>
+            
+            <div class="reel-bottoms">
+                <p><strong>Source:</strong> ${reel.news.newspaperName}</p>
+              <p ><a href="${reel.news.link}" target="_blank">Read more</a></p>
             </div>
         `;
+
+
         reelsContainer.appendChild(reelDiv);
     });
 }
 
+function toggleAudio(audioSrc, button) {
+    // If the current audio source is the same, toggle play/pause
+    if (window.beeb.src === audioSrc) {
+        if (!window.beeb.paused) {
+            window.beeb.pause();
+            button.innerText = '🔇'; // Change icon to indicate audio is paused
+        } else {
+            window.beeb.play().catch(error => {
+                console.error('Error playing audio:', error);
+            });
+            button.innerText = '🔊'; // Change icon to indicate audio is playing
+        }
+    } else {
+        // Set new source, enable looping, and play
+        window.beeb.src = audioSrc;
+        window.beeb.loop = true; // Enable looping
+        window.beeb.play().catch(error => {
+            console.error('Error playing audio:', error);
+        });
+        button.innerText = '🔊'; // Change icon to indicate audio is playing
+    }
+}
+
+
 function likeReel(reelsId) {
     // Implement like functionality
     console.log(`Liked reel with ID: ${reelsId}`);
+    // Optionally, update the like count here if you have the logic
 }
 
-function stopAudio() {
-    // Implement stop audio functionality
-    console.log('Stopping audio');
-}
-
-function shareReel() {
-    // Implement share functionality
-    console.log('Sharing reel');
+function readMore(reelsId) {
+    // Implement read more functionality
+    console.log(`Read more for reel with ID: ${reelsId}`);
 }
 
 function logout() {

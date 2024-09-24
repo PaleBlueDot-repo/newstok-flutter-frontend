@@ -14,7 +14,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     .then(data => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("email", email);
-        window.location.href = "reels.html"; // Redirect to the reels page
+        window.location.href = "index.html"; // Redirect to the reels page
     })
     .catch(error => {
         alert("Login failed. Please try again.");
