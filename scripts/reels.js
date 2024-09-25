@@ -17,6 +17,7 @@ function checkAuthentication() {
 }
 
 function fetchReelsFeed(email) {
+    console.log(localStorage.getItem("name"));
     fetch(`http://localhost:8080/user/getReelsFeed?email=${email}`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -24,6 +25,7 @@ function fetchReelsFeed(email) {
     })
         .then(response => response.json())
         .then(data => {
+            console.log(data); 
             displayReels(data);
         })
         .catch(error => {
@@ -31,7 +33,7 @@ function fetchReelsFeed(email) {
         });
 }
 
-// Create a global Audio object
+
 window.beeb = new Audio();
 
 function displayReels(reels) {
@@ -48,16 +50,16 @@ function displayReels(reels) {
             <div class="reel-upper">
                 <h3>${reel.reels.title}</h3>
             </div>
-            <div class="reel-content">
+            <div style="color:${reel.reels.font_color}" class="reel-content">
                 <h3>${reel.reels.summary}</h3>
             </div>
             <div class="reel-buttons">
                 <button class="stop-audio" onclick="toggleAudio('${audioSrc}', this)">🔇</button>
                 <button class="like" onclick="likeReel(${reel.reels.reelsId}, this)" style="background-color: ${reel.reels.liked ? 'black' : 'transparent'}">❤️ </button>
-                <button class="count">${reel.reels.likeCount}</button>
+                
             </div>
             <div class="reel-bottoms">
-                <p><strong>Source:</strong> ${reel.news.newspaperName}</p>
+                <p style="color:white"><strong>Source:</strong> ${reel.news.newspaperName}</p>
                 <p><a href="${reel.news.link}" target="_blank">Read more</a></p>
             </div>
         `;
@@ -87,7 +89,9 @@ function startTrackingTime(reelId) {
 }
 
 function stopTrackingTime(reelId) {
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem('userid');
+    if(userId!=null){
+
     if (reelStartTime) {
         const timeSpent = (new Date() - reelStartTime) / 1000; // Time in seconds
 
@@ -114,6 +118,8 @@ function stopTrackingTime(reelId) {
 
         reelStartTime = null; // Reset the timer
     }
+
+}
 }
 
 function toggleAudio(audioSrc, button) {
@@ -138,7 +144,9 @@ function toggleAudio(audioSrc, button) {
 }
 
 function likeReel(reelId, button) {
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem('userid');
+
+   if(userId!=null){
 
     fetch(`http://localhost:8080/user/likeReel`, {
         method: 'POST',
@@ -152,12 +160,14 @@ function likeReel(reelId, button) {
     })
         .then(response => response.json())
         .then(data => {
-            button.style.backgroundColor = data.liked ? 'black' : 'transparent';
-            button.nextElementSibling.innerText = data.likeCount; // Update like count
+            console.log(data);
+            button.style.backgroundColor = data.liked ? 'red' : 'transparent';
         })
         .catch(error => {
             console.error('Error liking reel:', error);
         });
+
+    }
 }
 
 function logout() {

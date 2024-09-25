@@ -10,7 +10,7 @@ function fetchUserProfile() {
     const name = localStorage.getItem('name');
     const interests = localStorage.getItem('interests'); // Interests are expected as a comma-separated string in localStorage
     console.log("line 12", name);
-
+    console.log(name);
     // Set the name in the input field
     if (name) {
         document.getElementById('name').value = name;
