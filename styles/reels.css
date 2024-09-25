@@ -48,13 +48,15 @@ body {
 }
 
 .reel-buttons {
+
     position: absolute;
     right: -10px;
     top: 70%;
     transform: translateY(-100%);
     display: flex;
     flex-direction: column;
-    gap: 50px;  /* Space between buttons */
+    gap: 50px;
+
 }
 
 .reel-buttons button {
@@ -73,22 +75,31 @@ body {
 }
 
 .reel-buttons .like {
-    margin-top: 120px;
+    position: absolute;
+    margin-top: 90px;
     padding: auto;
-    background-color: #ff4c4c;  /* Red for like */
+    background-color: transparent;
+    /* background-color: #ff4c4c; */
+    border-color: transparent;
+
 }
 
-.reel-buttons .count {
-    position:absolute;
-    margin-top: 50px;
-    padding: auto;
-    background-color: #ff4c4c;  /* Red for like */
-}
+
 
 .reel-buttons .stop-audio {
-    margin-top: 50px;
+    position: absolute;
+    margin-top: 20px;
     padding: auto;
-    background-color: #4caf50;  /* Green for stop audio */
+    background-color: #4caf50; 
+   
+}
+.reel-buttons .count {
+    position: absolute;
+    margin-top: 110px;
+    padding: auto;
+    color: black;
+    font-size: 13px;
+    background-color: transparent  /* Green for stop audio */
 }
 
 .reel-buttons .share {
@@ -114,7 +125,7 @@ button {
     left: 0; /* Align it to the left */
     width: 100%; /* Stretch it across the container width */
     text-align: center;
-    font-size: 10px;
+    font-size: 20px;
     color: white;
     background-color: #4caf50;
 }

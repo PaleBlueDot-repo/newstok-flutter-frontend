@@ -12,8 +12,12 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data.token);
+        
         localStorage.setItem("token", data.token);
-        localStorage.setItem("email", email);
+        localStorage.setItem("email", data.user.email);
+        localStorage.setItem("userid", data.user.userId);
+
         window.location.href = "index.html"; // Redirect to the reels page
     })
     .catch(error => {
