@@ -13,8 +13,13 @@ document.getElementById('register-form').addEventListener('submit', function(eve
     })
     .then(response => response.json())
     .then(data => {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("email", data.user.email);
+        localStorage.setItem("userid", data.user.userId);
+        localStorage.setItem("name", data.user.name);
         alert('Registration successful. Please log in.');
-        window.location.href = "login.html"; // Redirect to login
+
+        window.location.href = "profile.html"; // Redirect to login
     })
     .catch(error => {
         alert("Registration failed. Please try again.");

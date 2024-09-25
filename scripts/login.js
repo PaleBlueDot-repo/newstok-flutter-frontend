@@ -17,7 +17,9 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         localStorage.setItem("token", data.token);
         localStorage.setItem("email", data.user.email);
         localStorage.setItem("userid", data.user.userId);
-
+        localStorage.setItem("name", data.user.name);
+        localStorage.setItem("interests",data.user.interests);
+        console.log("line 22", data.user.name);
         window.location.href = "index.html"; // Redirect to the reels page
     })
     .catch(error => {

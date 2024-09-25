@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Reels App</title>
+    <link rel="stylesheet" href="styles/profile.css">
+</head>
+<body>
+    <h2>User Profile</h2>
+    <form id="profile-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="interests">Interests:</label>
+        <select id="interests" name="interests" multiple required>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="World">World</option>
+            <option value="Sports">Sports</option>
+            <option value="Science-Technology">Science-Technology</option>
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Exception">Exception</option>
+            <option value="Business-Economy">Business-Economy</option>
+            <option value="City">City</option>
+            <option value="Front-Page">Front-Page</option>
+            <option value="Back-Page">Back-Page</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="National">National</option>
+        </select>
+        
+        <button type="submit">Update Profile</button>
+    </form>
+    
+    <button onclick="goBack()">Back to Reels</button>
+
+    <script src="scripts/profile.js"></script>
+</body>
+</html>
